@@ -188,8 +188,9 @@ bool treClass::readFileBlock( std::ifstream &file )
 	    fileFinalSize
 	    ) )
     {
-	std::cout << "Failed to read/uncompress data!" << std::endl;
-	return false;
+      std::cout << __FILE__ << ": " << __LINE__
+		<< "Failed to read/uncompress data!" << std::endl;
+      return false;
     }
     
     // Fail if block is null...
@@ -242,7 +243,8 @@ bool treClass::readNameBlock( std::ifstream &file )
 	    nameFinalSize
 	    ) )
     {
-	std::cout << "Failed to read/uncompress data!" << std::endl;
+	std::cout << __FILE__ << ": " << __LINE__
+		  << "Failed to read/uncompress data!" << std::endl;
 	return false;
     }
     
@@ -341,8 +343,9 @@ treClass::saveRecordAsStream( const unsigned int &recordNum )
 	    fileRecordList[recordNum].getUncompressedSize()
 	    ) )
     {
-	std::cout << "Failed to read/uncompress data!" << std::endl;
-	return NULL;
+      std::cout << __FILE__ << ": " << __LINE__
+		<< "Failed to read/uncompress data!" << std::endl;
+      return NULL;
     }
 
     treFile.close();
@@ -466,8 +469,9 @@ bool treClass::saveRecordAsFile( const unsigned int &recordNum )
 	    fileRecordList[recordNum].getUncompressedSize()
 	    ) )
     {
-	std::cout << "Failed to read/uncompress data!" << std::endl;
-	return false;
+      std::cout << __FILE__ << ": " << __LINE__
+		<< "Failed to read/uncompress data!" << std::endl;
+      return false;
     }
 
     treFile.close();
@@ -517,8 +521,9 @@ bool treClass::saveRecordAsFile( const unsigned int &recordNum )
 		   std::ofstream::binary );
     if( !dataFile.is_open() )
     {
-	std::cout << "Failed to open output file!" << std::endl;
-	return false;
+      std::cout << __FILE__ << ": " << __LINE__
+		<< "Failed to open output file!" << std::endl;
+      return false;
     }
 
     // Write uncompressed data to file...
@@ -603,9 +608,10 @@ bool treClass::writeFileBlock( std::ofstream &file )
 	std::ifstream dataFile( i->getFileName().c_str() );
 	if( !dataFile.is_open() )
 	{
-	    std::cout << "Failed to open file: " 
-		      << i->getFileName() << std::endl;
-	    return false;
+	  std::cout << __FILE__ << ": " << __LINE__
+		    << "Failed to open file: " 
+		    << i->getFileName() << std::endl;
+	  return false;
 	}
 
 	// Get file size...
@@ -614,9 +620,10 @@ bool treClass::writeFileBlock( std::ofstream &file )
 
 	if( !(i->getDataBlock().allocateUncompressedData( dataFileSize )) )
 	{
-	    std::cout << "Failed to allocate " << dataFileSize
-		      << " bytes for data file!" << std::endl;
-	    return false;
+	  std::cout << __FILE__ << ": " << __LINE__
+		    << "Failed to allocate " << dataFileSize
+		    << " bytes for data file!" << std::endl;
+	  return false;
 	}
 
 	// Position file pointer and beginning of file...
@@ -754,7 +761,8 @@ void treClass::setFileBlockCompression( const unsigned int &f )
     }
     else
     {
-	std::cout << "Failed: Unknown compression" << std::endl;
+      std::cout << __FILE__ << ": " << __LINE__
+		<< "Failed: Unknown compression" << std::endl;
     }
 }
 
@@ -766,7 +774,8 @@ void treClass::setNameBlockCompression( const unsigned int &f )
     }
     else
     {
-	std::cout << "Failed: Unknown compression" << std::endl;
+      std::cout << __FILE__ << ": " << __LINE__
+		<< "Failed: Unknown compression" << std::endl;
     }
 }
 
