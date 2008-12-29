@@ -3,7 +3,7 @@ BIN = ../bin
 INC = ../include
 LIB = ../lib
 
-CFLAG = -I$(INC) -g -Wall -pedantic
+CFLAG = -I$(INC) -g -Wall -pedantic -fPIC
 OBJS = treArchive.o treClass.o treFileRecord.o treDataBlock.o md5.o
 LIBS = -L$(LIB) -ltreLib -lz
 
