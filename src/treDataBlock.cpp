@@ -155,54 +155,60 @@ bool treDataBlock::readAndUncompress(
         file.read( compData, compSize );
         uncompressedSize = uncompSize;
 
-        //std::cout << "Uncompressing data block...";
+        std::cout << "Uncompressing data block...";
         int result = uncompress((Bytef*)data,
                                 (uLongf *)&uncompressedSize,
                                 (Bytef*)compData,
                                 compSize );
 
-        if( result == Z_OK )
-        {
-            //std::cout << "success." << std::endl;
-        }
+        if( Z_OK == result )
+	  {
+	    //std::cout << "success." << std::endl;
+	  }
         else if( Z_MEM_ERROR == result )
-        {
-            std::cout << "uncompress: Memory error!" << std::endl;
+	  {
+            std::cout << __FILE__ << ": " << __LINE__
+		      << ": uncompress: Memory error!" << std::endl;
             return false;
-        }
+	  }
         else if( Z_BUF_ERROR == result )
-        {
-            std::cout << "uncompress: Buffer error!" << std::endl;
+	  {
+            std::cout << __FILE__ << ": " << __LINE__
+		      << ": uncompress: Buffer error!" << std::endl;
             return false;
-        }
+	  }
         else if( Z_DATA_ERROR == result )
-        {
-            std::cout << "uncompress: Data error!" << std::endl;
+	  {
+            std::cout << __FILE__ << ": " << __LINE__
+		      << ": uncompress: Data error!" << std::endl;
             return false;
-        }
+	  }
         else
-        {
-            std::cout << "uncompress: Unknown error!" << std::endl;
+	  {
+            std::cout << __FILE__ << ": " << __LINE__
+		      << ": uncompress: Unknown error!" << std::endl;
             return false;
-        }
-
+	  }
+	
         if( uncompressedSize != uncompSize )
-        {
-            std::cout << "Uncompressed size does not match expected size!"
+	  {
+            std::cout << __FILE__ << ": " << __LINE__
+		      << ": Uncompressed size does not match expected size!"
                       << std::endl;
             return false;
-        }
+	  }
     }
     else if( 0 == format ) // No compression
-    {
+      {
         data = new char[uncompSize];
         file.read( data, uncompSize );
-    }
+      }
     else
-    {
-        std::cout << "Unknown format: " << format << std::endl;
+      {
+        std::cout << __FILE__ << ": " << __LINE__
+		  << ": Unknown format: " << format << std::endl;
         return false;
-    }
+      }
 
     return true;
 }
