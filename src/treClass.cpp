@@ -28,6 +28,7 @@
 #include <sstream>
 #include <zlib.h> // For compress, uncompress...
 #include <md5.h> // For md5
+#include <cstring> // For memcpy
 
 #include <sys/stat.h> // For mkdir()
 #include <sys/types.h> // For mkdir()

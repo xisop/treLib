@@ -27,6 +27,7 @@
 #include <iostream>
 #include <bitset>
 #include <zlib.h>
+#include <cstring> // For memcpy
 
 treFileRecord::treFileRecord()
     :

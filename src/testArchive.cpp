@@ -26,7 +26,7 @@
 #include <treLib/treArchive.hpp>
 
 
-int main( int argc, char *argv )
+int main( int argc, char **argv )
 {
 
   treArchive archive;

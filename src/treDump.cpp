@@ -26,7 +26,8 @@
 
 #include <iostream>
 #include <fstream>
-#include <stdlib.h> // for atoi()
+#include <cstdlib> // for atoi()
+#include <cstring> // For memcpy
 
 int main( int argc, char **argv )
 {
