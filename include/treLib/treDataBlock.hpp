@@ -39,8 +39,8 @@ public:
     bool readAndUncompress(
 	std::ifstream &file,
 	const int &format,
-	const unsigned int &compSize,
-	const unsigned int &uncompSize
+	const unsigned long &compSize,
+	const unsigned long &uncompSize
 	);
 
     bool compressAndWrite(
@@ -48,8 +48,8 @@ public:
 	const int &format
 	);
 
-    bool isChecksumCorrect( const unsigned int &csum );
-    void calculateMD5sum( const char *mem, const unsigned int &memSize );
+    bool isChecksumCorrect( const unsigned long &csum );
+    void calculateMD5sum( const char *mem, const unsigned long &memSize );
     const std::vector<unsigned char> &getMD5sum() const;
 
     void freeCompressedData();
@@ -58,26 +58,26 @@ public:
     char *getCompressedDataPtr();
     char *getUncompressedDataPtr();
 
-    bool allocateUncompressedData( const unsigned int &size );
+    bool allocateUncompressedData( const unsigned long &size );
 
     bool setUncompressedData( 
 	const char *newData,
-	const unsigned int &newDataSize
+	const unsigned long &newDataSize
 	);
 
-    unsigned int getUncompressedSize() const
+    unsigned long getUncompressedSize() const
 	{
 	    return uncompressedSize;
 	}
-    unsigned int getCompressedSize() const
+    unsigned long getCompressedSize() const
 	{
 	    return compressedSize;
 	}
 
 protected:
-    unsigned int checksum;
-    unsigned int uncompressedSize;
-    unsigned int compressedSize;
+    unsigned long checksum;
+    unsigned long uncompressedSize;
+    unsigned long compressedSize;
     std::vector<unsigned char> md5sum;
     char *data;
     char *compData;

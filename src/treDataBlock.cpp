@@ -72,7 +72,7 @@ char *treDataBlock::getCompressedDataPtr()
     return compData;
 }
 
-bool treDataBlock::isChecksumCorrect( const unsigned int &csum )
+bool treDataBlock::isChecksumCorrect( const unsigned long &csum )
 {
     // Needs work...
     return true;
@@ -80,7 +80,7 @@ bool treDataBlock::isChecksumCorrect( const unsigned int &csum )
 
 void treDataBlock::calculateMD5sum(
     const char *mem,
-    const unsigned int &memSize
+    const unsigned long &memSize
     )
 {
     // Clear old sum...
@@ -105,7 +105,7 @@ const std::vector<unsigned char> &treDataBlock::getMD5sum() const
     return md5sum;
 }
 
-bool treDataBlock::allocateUncompressedData( const unsigned int &size )
+bool treDataBlock::allocateUncompressedData( const unsigned long &size )
 {
     // Free any previously allocated memory...
     freeCompressedData();
@@ -119,7 +119,7 @@ bool treDataBlock::allocateUncompressedData( const unsigned int &size )
 }
 
 bool treDataBlock::setUncompressedData( const char *newData,
-			  const unsigned int &newDataSize )
+			  const unsigned long &newDataSize )
 {
     freeCompressedData();
     freeUncompressedData();
@@ -139,8 +139,8 @@ bool treDataBlock::setUncompressedData( const char *newData,
 bool treDataBlock::readAndUncompress(
 	std::ifstream &file,
 	const int &format,
-	const unsigned int &compSize,
-	const unsigned int &uncompSize
+	const unsigned long &compSize,
+	const unsigned long &uncompSize
 	)
 {
     freeCompressedData();
@@ -231,7 +231,7 @@ bool treDataBlock::compressAndWrite(
     if( 2 == format )
     {
 	// Allocate temp buffer to compress data into...
-	unsigned int tempDataLength = uncompressedSize*2;
+	unsigned long tempDataLength = uncompressedSize*2;
         char *tempData = new char[tempDataLength];
 	
 	// Compress the data...
