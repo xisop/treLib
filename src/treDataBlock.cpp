@@ -155,7 +155,7 @@ bool treDataBlock::readAndUncompress(
         file.read( compData, compSize );
         uncompressedSize = uncompSize;
 
-        std::cout << "Uncompressing data block...";
+        //std::cout << "Uncompressing data block...";
         int result = uncompress((Bytef*)data,
                                 (uLongf *)&uncompressedSize,
                                 (Bytef*)compData,
