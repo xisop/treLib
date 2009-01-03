@@ -311,7 +311,7 @@ bool treClass::readMD5sums( std::ifstream &file )
 }
 
 std::stringstream *
-treClass::saveRecordAsStream( const unsigned int &recordNum )
+treClass::saveRecordAsStream( const unsigned int &recordNum, bool verbose )
 {
     // Fail if record is out of range...
     if( recordNum >= fileRecordList.size() )
@@ -320,9 +320,12 @@ treClass::saveRecordAsStream( const unsigned int &recordNum )
 	return NULL;
     }
 
-    std::cout << "Found record: " << fileRecordList[recordNum].getFileName()
-	      << std::endl;
-    fileRecordList[recordNum].print();
+    if( verbose )
+      {
+	std::cout << "Found record: " << fileRecordList[recordNum].getFileName()
+		  << std::endl;
+	fileRecordList[recordNum].print();
+      }
 
     // Open file, exit on failure...
     treFile.open( filename.c_str(), std::ios_base::binary );

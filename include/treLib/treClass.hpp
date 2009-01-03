@@ -57,7 +57,8 @@ public:
   void printNameBlock() const;
 
   bool saveRecordAsFile( const unsigned int &recordNum );
-  std::stringstream *saveRecordAsStream( const unsigned int &recordNum );
+  std::stringstream *saveRecordAsStream( const unsigned int &recordNum,
+					 bool verbose = false );
 
   std::vector<treFileRecord> &getFileRecordList() { return fileRecordList; }
   bool getFileRecordIndex( const std::string &recordName, 
