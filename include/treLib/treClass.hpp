@@ -4,7 +4,7 @@
  *  \author Kenneth R. Sewell III
 
  treLib is used for the creation and deconstruction of .TRE files.
- Copyright (C) 2006,2007 Kenneth R. Sewell III
+ Copyright (C) 2006-2009 Kenneth R. Sewell III
  
  This file is part of treLib.
  
@@ -49,7 +49,7 @@ public:
   unsigned int getFileBlockCompression() { return fileCompression; }
   unsigned int getNameBlockCompression() { return nameCompression; }
 
-  std::string getVersion() const { return version; }
+  const std::string &getVersion() const { return version; }
   void setVersion( const std::string &v ) { version = v; }
 
   void printHeader() const;
@@ -63,7 +63,7 @@ public:
   std::vector<treFileRecord> &getFileRecordList() { return fileRecordList; }
   bool getFileRecordIndex( const std::string &recordName, 
 			   unsigned int &index ) const;
-  std::string getFilename() const
+  const std::string &getFilename() const
   {
     return filename;
   }

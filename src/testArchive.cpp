@@ -4,7 +4,7 @@
  *  \author Kenneth R. Sewell III
 
  treLib is used for the creation and deconstruction of .TRE files.
- Copyright (C) 2006,2007 Kenneth R. Sewell III
+ Copyright (C) 2006-2009 Kenneth R. Sewell III
 
  This file is part of treLib.
 
