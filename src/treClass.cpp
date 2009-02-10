@@ -541,10 +541,10 @@ bool treClass::saveRecordAsFile( const unsigned int &recordNum )
 bool treClass::readFile( std::ifstream &file )
 {
     // Only call these functions if the previous ones were successful.
-    bool rv = readHeader( treFile );
-    if( rv ) { readFileBlock( treFile ); }
-    if( rv ) { readNameBlock( treFile ); }
-    if( rv ) { readMD5sums( treFile ); }
+    bool rv = readHeader( file );
+    if( rv ) { readFileBlock( file ); }
+    if( rv ) { readNameBlock( file ); }
+    if( rv ) { readMD5sums( file ); }
 
     return rv;
 }
