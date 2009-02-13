@@ -33,6 +33,17 @@ treArchive::~treArchive()
 {
 }
 
+void treArchive::fixSlash( std::string &filename )
+{
+  for( unsigned int i = 0; i < filename.size(); ++i )
+    {
+      if( filename[i] == '\\' )
+        {
+          filename[i] = '/';
+        }
+    }
+}
+
 bool treArchive::removeAllFiles()
 {
   // Delete and pop all tre files
@@ -47,9 +58,12 @@ bool treArchive::removeAllFiles()
 /// Add file to archive
 bool treArchive::addFile( const std::string &filename )
 {
+  std::string correctedFilename( filename );
+  fixSlash( correctedFilename  );
+
   // Else open was successful
   treClass *newTRE = new treClass();
-  if( newTRE->readFile( filename ) )
+  if( newTRE->readFile( correctedFilename ) )
     {
       treList.push_front( newTRE );
 
@@ -67,6 +81,9 @@ bool treArchive::addFile( const std::string &filename )
 /// Remove file from archive
 bool treArchive::removeFile( const std::string &filename )
 {
+  std::string correctedFilename( filename );
+  fixSlash( correctedFilename  );
+
   // Don't bother looking if list is empty
   if( !treList.empty() )
     {
@@ -75,7 +92,7 @@ bool treArchive::removeFile( const std::string &filename )
 	   ++i 
 	   )
 	{
-	  if( filename == (*i)->getFilename() )
+	  if( correctedFilename == (*i)->getFilename() )
 	    {
 	      delete (*i);
 	      treList.erase(i);
@@ -121,6 +138,9 @@ std::stringstream *treArchive::getFileStream( const std::string &filename )
       return NULL;
     }
 
+  std::string correctedFilename( filename );
+  fixSlash( correctedFilename  );
+
   unsigned int index = 0;
   // Loop through all tre files
   for( std::list<treClass *>::const_iterator i = treList.begin();
@@ -129,7 +149,7 @@ std::stringstream *treArchive::getFileStream( const std::string &filename )
        )
     {
       // Ask each treClass to find the file
-      if( (*i)->getFileRecordIndex( filename, index ) == true )
+      if( (*i)->getFileRecordIndex( correctedFilename, index ) == true )
 	{
 	  // First instance of file was found, return stream
 	  return ( (*i)->saveRecordAsStream( index ) );

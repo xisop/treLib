@@ -39,6 +39,9 @@ public:
   treArchive();
   ~treArchive();
 
+  /// Change windows style slashes to c++ style.
+  static void fixSlash( std::string &filename );
+
   /// Add TRE file to archive
   bool addFile( const std::string &filename );
 
