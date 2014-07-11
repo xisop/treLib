@@ -72,7 +72,7 @@ char *treDataBlock::getCompressedDataPtr()
     return compData;
 }
 
-bool treDataBlock::isChecksumCorrect( const unsigned long &csum )
+bool treDataBlock::isChecksumCorrect( const unsigned long &/*csum*/ )
 {
     // Needs work...
     return true;

@@ -357,7 +357,7 @@ treClass::saveRecordAsStream( const unsigned int &recordNum, bool verbose )
     char *data = dataBlock.getUncompressedDataPtr();
     if( NULL == data )
     {
-	return false;
+	return NULL;
     }
 
     md5_context md5;
